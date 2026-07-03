@@ -1,0 +1,12 @@
+import app = require("./app");
+
+let server;
+const port = 5000
+
+const bootstrap=async()=>{
+    server= app.listen(port, ()=>{
+    console.log(`App listing from ${port}`)
+})
+}
+
+bootstrap()
