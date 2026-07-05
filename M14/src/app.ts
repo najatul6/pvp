@@ -12,7 +12,7 @@ app.get("/", (req : Request, res : Response)=>{
     res.send("Hello, World!")
 })
 
-app.get("/todos/:title/:body", (req : Request, res : Response)=>{
+app.get("/todos", (req : Request, res : Response)=>{
     console.log(req.query)
     const data = fs.readFileSync(filePath, "utf8")
     res.json(JSON.parse(data))
