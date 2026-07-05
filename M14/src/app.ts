@@ -8,7 +8,8 @@ app.get("/", (req : Request, res : Response)=>{
 })
 
 app.get("/todos", (req : Request, res : Response)=>{
-    res.send("Todos")
+    console.log(req.query)
+
 })
 
 app.post("/todos/createTodo", (req : Request, res : Response)=>{
