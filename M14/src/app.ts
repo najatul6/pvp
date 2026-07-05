@@ -12,7 +12,7 @@ app.get("/", (req : Request, res : Response)=>{
     res.send("Hello, World!")
 })
 
-app.get("/todos", (req : Request, res : Response)=>{
+app.get("/todos/:title/:body", (req : Request, res : Response)=>{
     console.log(req.query)
     const data = fs.readFileSync(filePath, "utf8")
     res.json(JSON.parse(data))
@@ -21,7 +21,7 @@ app.get("/todos", (req : Request, res : Response)=>{
 app.post("/todos/createTodo", (req : Request, res : Response)=>{
     const {title,body} = req.body
     console.log(req.body)
-    res.json(title, body)
+    res.json({title, body})
 })
 
 export default app; 
