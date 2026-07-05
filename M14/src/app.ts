@@ -21,6 +21,7 @@ app.get("/todos", (req : Request, res : Response)=>{
 app.post("/todos/createTodo", (req : Request, res : Response)=>{
     const {title,body} = req.body
     console.log(req.body)
+    res.json(title, body)
 })
 
 export default app; 
