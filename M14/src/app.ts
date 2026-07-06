@@ -24,4 +24,4 @@ app.post("/todos/createTodo", (req : Request, res : Response)=>{
     res.send("Todo created!")
 })
 
-export default app; 
+export default app;
