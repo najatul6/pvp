@@ -1,7 +1,6 @@
 import express, {Application, Response, Request} from "express"
 import fs = require("fs")
 import path from "path"
-import process = require("process")
 
 
 const app : Application = express()
@@ -16,13 +15,13 @@ app.get("/", (req : Request, res : Response)=>{
 app.get("/todos", (req : Request, res : Response)=>{
     console.log(req.query)
     const data = fs.readFileSync(filePath, "utf8")
-    res.json(JSON.parse(data))
+    res.json(data)
 })
 
 app.post("/todos/createTodo", (req : Request, res : Response)=>{
     const {title,body} = req.body
     console.log(req.body)
-    res.json({title, body})
+    res.send("Todo created!")
 })
 
 export default app; 
