@@ -19,3 +19,21 @@ todosRouter.post("/create-todo", (req: Request, res: Response) => {
   console.log(title, body);
   res.send("Todo created!");
 });
+
+todosRouter.get("/:title", (req: Request, res: Response) => {
+    const { title } = req.body;
+    console.log(title)
+    res.send('Get todo')
+})
+
+todosRouter.put("/update-todo/:title", (req: Request, res: Response) => {
+    const {title}=req.body
+    console.log("Update todo")
+    res.send("Todo updated!")
+})
+
+todosRouter.delete("/delete-todo/:title", (req: Request, res: Response) => {
+    const { title } = req.body;
+    console.log("Delete todo")
+    res.send("Todo deleted!")
+})
