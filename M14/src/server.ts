@@ -1,4 +1,4 @@
-import app = require("./app");
+import app from "./app";
 
 let server;
 const port = 5000
