@@ -16,7 +16,7 @@ const client = new MongoClient(uri, {
 
 const bootstrap=async()=>{
     await client.connect();
-    console.log("Connected to mongodb")
+    console.log("Connected to Mongodb")
     server= app.listen(port, ()=>{
     console.log(`App listing from ${port}`)
 })
