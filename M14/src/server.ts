@@ -4,7 +4,7 @@ import { MongoClient, ServerApiVersion } from "mongodb";
 import app from "./app";
 
 let server;
-console.log("URI:", process.env.MONGODB_URI);
+
 const port = process.env.PORT || 5000;
 
 const uri = process.env.MONGODB_URI;
