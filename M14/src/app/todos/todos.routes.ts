@@ -18,13 +18,12 @@ todosRouter.get("/", (req: Request, res: Response) => {
 todosRouter.post("/create-todo", async (req: Request, res: Response) => {
   const db = await client.db("todoDB")
   const collection=await db.collection("todos")
-  collection.insertOne({
+  const result = await collection.insertOne({
     title: "MongoDB",
-    description: "Do something",
+    description: "Do some something",
     priority:"High",
     isCompleted:false
   });
-  const result=collection.find({})
   // const { title, body } = req.body;
   // console.log(title, body);
   res.json(result);
