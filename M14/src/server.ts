@@ -1,10 +1,17 @@
+import dotenv from "dotenv";
+dotenv.config();
 import { MongoClient, ServerApiVersion } from "mongodb";
 import app from "./app";
 
 let server;
-const port = 5000
+console.log("URI:", process.env.MONGODB_URI);
+const port = process.env.PORT || 5000;
 
-const uri = "mongodb+srv://todosApp:XAIEbUd59WD0kzkh@postofsale.2psjhl2.mongodb.net/todosDB?appName=PostOfSale";
+const uri = process.env.MONGODB_URI;
+
+if (!uri) {
+  throw new Error("MONGODB_URI is not defined in .env file");
+}
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
