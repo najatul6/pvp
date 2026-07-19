@@ -1,5 +1,4 @@
 import express, { Request, Response } from "express";
-import fs from "fs";
 import { client } from "../../config/mongoDB";
 import { ObjectId } from "mongodb";
 
@@ -25,7 +24,7 @@ todosRouter.get("/:id", async (req: Request, res: Response) => {
   const db = await client.db("todoDB")
   const collection = await db.collection("todos")
   const todo = await collection.findOne({ _id: new ObjectId(id) })
-  res.json(todo);
+  res.status(200).json(todo);
 });
 
 todosRouter.put("/update-todo/:id", async (req: Request, res: Response) => {
@@ -39,7 +38,7 @@ todosRouter.put("/update-todo/:id", async (req: Request, res: Response) => {
     { $set: { title, description, priority, isCompleted } },
     { upsert: true }
   );
-  res.json({ message: "Todo updated successfully" });
+  res.status(200).json({ message: "Todo updated successfully" });
 });
 
 todosRouter.delete("/delete-todo/:id", async (req: Request, res: Response) => {
@@ -47,5 +46,5 @@ todosRouter.delete("/delete-todo/:id", async (req: Request, res: Response) => {
   const db = await client.db("todoDB");
   const collection = await db.collection("todos");
   await collection.deleteOne({ _id: new ObjectId(id) });
-  res.json({ message: "Todo deleted successfully" });
+  res.status(200).json({ message: "Todo deleted successfully" });
 });
