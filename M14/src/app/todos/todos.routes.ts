@@ -19,32 +19,33 @@ todosRouter.get("/", (req: Request, res: Response) => {
 todosRouter.post("/create-todo", async (req: Request, res: Response) => {
   const db = await client.db("todoDB")
   const collection = await db.collection("todos")
-  const { title, description,priority } = req.body;
+  const { title, description, priority } = req.body;
   await collection.insertOne({ title, description, priority });
   res.status(201).json({ message: "Todo created successfully" });
 });
 
 todosRouter.get("/:id", async (req: Request, res: Response) => {
-  const  id  = req.params.id;
+  const id = req.params.id;
   const db = await client.db("todoDB")
   const collection = await db.collection("todos")
-  const todo= await collection.findOne({ _id: new ObjectId(id) })
-  res.json(todo );
+  const todo = await collection.findOne({ _id: new ObjectId(id) })
+  res.json(todo);
 });
 
-// todosRouter.put("/update-todo/:id", async(req: Request, res: Response) => {
-//   const { id } = req.params;
-//   const { title, description, priority } = req.body;
-//   const db = await client.db("todoDB");
-//   const collection = await db.collection("todos");
-//   await collection.updateOne({ _id: new ObjectId(id) }, { $set: { title, description, priority } });
-//   res.json({ message: "Todo updated successfully" });
-// });
-
-todosRouter.delete("/delete-todo/:id", async (req: Request, res: Response) => {
-  const  id  = req.params.id;
+todosRouter.put("/update-todo/:id", async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const { title, description, priority, isCompleted } = req.body;
   const db = await client.db("todoDB");
   const collection = await db.collection("todos");
-  const deleteTodo= await collection.deleteOne({ _id: new ObjectId(id) });
-  res.json(deleteTodo)
+  const filter = { _id: new ObjectId(id) };
+  const data = await collection.updateOne(filter, { $set: { title, description, priority, isCompleted }, upsert: true });
+  res.json(data);
+});
+
+todosRouter.delete("/delete-todo/:id", async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const db = await client.db("todoDB");
+  const collection = await db.collection("todos");
+  await collection.deleteOne({ _id: new ObjectId(id) });
+  res.json({ message: "Todo deleted successfully" });
 });
