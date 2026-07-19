@@ -30,7 +30,7 @@ async(req: Request, res: Response) => {
 })
 
 app.get("/error", 
-async(req: Request, res: Response,) => {
+async(req: Request, res: Response,next: NextFunction) => {
     try {
         res.send("Welcome to the API")
         
