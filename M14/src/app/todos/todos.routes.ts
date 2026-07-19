@@ -6,17 +6,17 @@ import { ObjectId } from "mongodb";
 export const todosRouter = express.Router();
 
 todosRouter.get("/", async (req: Request, res: Response) => {
-  const db= await client.db("todoDB")
+  const db = await client.db("todoDB")
   const collection = await db.collection("todos")
   const todos = await collection.find({}).toArray();
-  res.json(todos);
+  res.status(200).json(todos);
 });
 
 todosRouter.post("/create-todo", async (req: Request, res: Response) => {
   const db = await client.db("todoDB")
   const collection = await db.collection("todos")
-  const { title, description, priority,isCompleted } = req.body;
-  await collection.insertOne({ title, description, priority, isCompleted:false });
+  const { title, description, priority, isCompleted } = req.body;
+  await collection.insertOne({ title, description, priority, isCompleted: false });
   res.status(201).json({ message: "Todo created successfully" });
 });
 
@@ -34,14 +34,12 @@ todosRouter.put("/update-todo/:id", async (req: Request, res: Response) => {
   const db = await client.db("todoDB");
   const collection = await db.collection("todos");
   const filter = { _id: new ObjectId(id) };
-  const data = await collection.updateOne(
+  await collection.updateOne(
     filter,
-    {
-      $set: { title, description, priority, isCompleted },
-      upsert: true
-    }
+    { $set: { title, description, priority, isCompleted } },
+    { upsert: true }
   );
-  res.json(data);
+  res.json({ message: "Todo updated successfully" });
 });
 
 todosRouter.delete("/delete-todo/:id", async (req: Request, res: Response) => {
