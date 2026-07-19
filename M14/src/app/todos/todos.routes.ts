@@ -41,10 +41,10 @@ todosRouter.get("/:id", async (req: Request, res: Response) => {
 //   res.json({ message: "Todo updated successfully" });
 // });
 
-// todosRouter.delete("/delete-todo/:id", async (req: Request, res: Response) => {
-//   const { id } = req.params;
-//   const db = await client.db("todoDB");
-//   const collection = await db.collection("todos");
-//   await collection.deleteOne({ _id: new ObjectId(id) });
-//   res.json({ message: "Todo deleted successfully" });
-// });
+todosRouter.delete("/delete-todo/:id", async (req: Request, res: Response) => {
+  const  id  = req.params.id;
+  const db = await client.db("todoDB");
+  const collection = await db.collection("todos");
+  const deleteTodo= await collection.deleteOne({ _id: new ObjectId(id) });
+  res.json(deleteTodo)
+});
