@@ -40,7 +40,7 @@ app.get("/error",
         }
     })
 
-app.all("*", (req: Request, res: Response) => {
+app.use( (req: Request, res: Response,next: NextFunction) => {
     res.status(404).json({
         message: "Route not found"
     })
