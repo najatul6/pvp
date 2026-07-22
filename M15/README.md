@@ -24,22 +24,17 @@ db.data.find({
 });
 ```
 
-### 2. Find documents where the favorite color is either "Maroon" or "Blue."
+### 3. Find all documents where the skill is an empty array.
 
 ### Answer
 
-```
-db.data.find(
-  { age: { $gt: 30 } },
-  {
-    _id: 0,
-    name: 1,
-    email: 1
-  }
-);
+```javascript
+db.data.find({
+  skill: { $size: 0 },
+});
 ```
 
-### 2. Find documents where the favorite color is either "Maroon" or "Blue."
+### 4. Find documents where the favorite color is either "Maroon" or "Blue."
 
 ### Answer
 
