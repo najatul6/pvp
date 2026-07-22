@@ -34,19 +34,16 @@ db.data.find({
 });
 ```
 
-### 4. Find documents where the favorite color is either "Maroon" or "Blue."
+### 4. Find documents where the person has skills in both "JavaScript" and "Java".
 
 ### Answer
 
-```
-db.data.find(
-  { age: { $gt: 30 } },
-  {
-    _id: 0,
-    name: 1,
-    email: 1
-  }
-);
+```javascript
+db.data.find({
+  "skills.name": {
+    $all: ["JavaScript", "Java"],
+  },
+});
 ```
 
 ### 2. Find documents where the favorite color is either "Maroon" or "Blue."
