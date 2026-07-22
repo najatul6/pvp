@@ -47,19 +47,31 @@ db.data.find({
 ```
 
 ### 5. Add a new skill to the skills array for the document with the email "amccurry3@cnet.com". The skill is {"name": "Python","level": "Beginner","isLearning": true}
+
 Note: At first, you will have to insert the given email then add the skill
 mentioned above
 
 ### Answer
 
+```javascript
+db.data.insertOne({
+  email: "amccurry3@cnet.com",
+  skills: [],
+});
 ```
-db.data.find(
-  { age: { $gt: 30 } },
+
+```javascript
+db.data.updateOne(
+  { email: "amccurry3@cnet.com" },
   {
-    _id: 0,
-    name: 1,
-    email: 1
-  }
+    $push: {
+      skills: {
+        name: "Python",
+        level: "Beginner",
+        isLearning: true,
+      },
+    },
+  },
 );
 ```
 
@@ -68,14 +80,16 @@ db.data.find(
 ### Answer
 
 ```
+
 db.data.find(
-  { age: { $gt: 30 } },
-  {
-    _id: 0,
-    name: 1,
-    email: 1
-  }
+{ age: { $gt: 30 } },
+{
+\_id: 0,
+name: 1,
+email: 1
+}
 );
+
 ```
 
 ### 2. Find documents where the favorite color is either "Maroon" or "Blue."
@@ -83,12 +97,18 @@ db.data.find(
 ### Answer
 
 ```
+
 db.data.find(
-  { age: { $gt: 30 } },
-  {
-    _id: 0,
-    name: 1,
-    email: 1
-  }
+{ age: { $gt: 30 } },
+{
+\_id: 0,
+name: 1,
+email: 1
+}
 );
+
+```
+
+```
+
 ```
