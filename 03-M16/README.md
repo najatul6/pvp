@@ -1,6 +1,4 @@
-# practice-tasks-2-solutions
-
-## Problem Statements
+# MongoDB Practice Task
 
 ### 1. Retrieve the count of individuals who are active (`isActive: true`) for each gender.
 
