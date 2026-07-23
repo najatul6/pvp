@@ -73,15 +73,28 @@ db.data.updateOne(
 ### Answer
 
 ```javascript
-
-
-
+db.data.updateMany(
+  {},
+  {
+    $addToSet:{
+      languages: "Spanish"
+    }
+  }
+)
 ```
 
 ### 7. Remove the skill with the name "Kotlin" from the skills array.
 
 ### Answer
-
 ```javascript
-
+db.data.updateMany(
+  {},
+  {
+    $pull: {
+      skills: {
+        name: "Kotlin",
+      },
+    },
+  }
+);
 ```
