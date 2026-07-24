@@ -10,11 +10,14 @@ const noteSchema = new Schema({
 
 const Note = model('Note', noteSchema);
 
-app.post("/create-note", (req: Request, res: Response) => {
-  const myNote=new Note({
-    title:"My Note",
-    content:"This is the content of my note."
+app.post("/create-note", async (req: Request, res: Response) => {
+  const myNote = new Note({
+    title: "My Note",
+    content: "This is the content of my note."
   })
+
+  await myNote.save();
+
   res.status(201).json({
     success: true,
     message: "Note created successfully",
