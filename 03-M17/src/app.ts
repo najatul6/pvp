@@ -36,7 +36,7 @@ app.post("/note/create-note", async (req: Request, res: Response) => {
   })
 })
 
-// Get All Note Endpoint
+// Get All Notes Endpoint
 app.get("/notes", async (req: Request, res: Response) => {
   const notes = await Note.find();
 
@@ -44,6 +44,25 @@ app.get("/notes", async (req: Request, res: Response) => {
     success: true,
     message: "Notes retrieved successfully",
     notes
+  });
+});
+
+// Get Single Note Endpoint
+app.get("/note/:id", async (req: Request, res: Response) => {
+  const noteId=req.params.id
+  const note = await Note.findById(noteId);
+
+  if (!note) {
+    return res.status(404).json({
+      success: false,
+      message: "Note not found"
+    });
+  }
+
+  res.status(200).json({
+    success: true,
+    message: "Note retrieved successfully",
+    note
   });
 });
 
