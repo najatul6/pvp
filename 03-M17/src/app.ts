@@ -24,6 +24,7 @@ const noteSchema = new Schema({
 
 const Note = model('Note', noteSchema);
 
+// Create Note Endpoint
 app.post("/note/create-note", async (req: Request, res: Response) => {
   const body=req.body
   const note= await Note.create(body)
@@ -34,6 +35,17 @@ app.post("/note/create-note", async (req: Request, res: Response) => {
     note
   })
 })
+
+// Get All Note Endpoint
+app.get("/notes", async (req: Request, res: Response) => {
+  const notes = await Note.find();
+
+  res.status(200).json({
+    success: true,
+    message: "Notes retrieved successfully",
+    notes
+  });
+});
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Welcome to Note App');
