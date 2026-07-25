@@ -70,7 +70,7 @@ app.get("/note/:id", async (req: Request, res: Response) => {
 app.patch("/note/:id",async(req:Request,res:Response)=>{
   const noteId = req.params.id;
   const updateData = req.body;
-  const note = await Note.findByIdAndUpdate(noteId,updateData)
+  const note = await Note.findByIdAndUpdate(noteId,updateData,{ new: true })
   res.status(200).json({
     success:true,
     message:"Note updated successfully",
