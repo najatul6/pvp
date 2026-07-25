@@ -16,9 +16,9 @@ const noteSchema = new Schema({
     type: Boolean,
     default: false
   },
-  tags:{
-    label:{type: String, required: true},
-    color:{type: String, default:'#727272'}
+  tags: {
+    label: { type: String, required: true },
+    color: { type: String, default: '#727272' }
   }
 });
 
@@ -26,8 +26,8 @@ const Note = model('Note', noteSchema);
 
 // Create Note Endpoint
 app.post("/note/create-note", async (req: Request, res: Response) => {
-  const body=req.body
-  const note= await Note.create(body)
+  const body = req.body
+  const note = await Note.create(body)
 
   res.status(201).json({
     success: true,
@@ -49,7 +49,7 @@ app.get("/notes", async (req: Request, res: Response) => {
 
 // Get Single Note Endpoint
 app.get("/note/:id", async (req: Request, res: Response) => {
-  const noteId=req.params.id
+  const noteId = req.params.id
   const note = await Note.findById(noteId);
 
   if (!note) {
@@ -67,13 +67,24 @@ app.get("/note/:id", async (req: Request, res: Response) => {
 });
 
 // Update Single Note Endpoint
-app.patch("/note/:id",async(req:Request,res:Response)=>{
+app.patch("/note/:id", async (req: Request, res: Response) => {
   const noteId = req.params.id;
   const updateData = req.body;
-  const note = await Note.findByIdAndUpdate(noteId,updateData,{ new: true })
+  const note = await Note.findByIdAndUpdate(noteId, updateData, { new: true })
   res.status(200).json({
-    success:true,
-    message:"Note updated successfully",
+    success: true,
+    message: "Note updated successfully",
+    note
+  })
+})
+
+// Delete Note Endpoint
+app.delete("/note/:id", async (req: Request, res: Response) => {
+  const noteId = req.params.id;
+  const note = await Note.findByIdAndDelete(noteId)
+  res.status(200).json({
+    success: true,
+    message: "Note deleted successfully",
     note
   })
 })
