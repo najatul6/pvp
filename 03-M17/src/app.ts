@@ -20,7 +20,7 @@ const noteSchema = new Schema({
     label: { type: String, required: true },
     color: { type: String, default: '#727272' }
   }
-});
+},{ timestamps: true });
 
 const Note = model('Note', noteSchema);
 
