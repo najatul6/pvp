@@ -66,6 +66,18 @@ app.get("/note/:id", async (req: Request, res: Response) => {
   });
 });
 
+// Update Single Note Endpoint
+app.patch("/note/:id",async(req:Request,res:Response)=>{
+  const noteId = req.params.id;
+  const updateData = req.body;
+  const note = await Note.findByIdAndUpdate(noteId,updateData)
+  res.status(200).json({
+    success:true,
+    message:"Note updated successfully",
+    note
+  })
+})
+
 app.get('/', (req: Request, res: Response) => {
   res.send('Welcome to Note App');
 });
