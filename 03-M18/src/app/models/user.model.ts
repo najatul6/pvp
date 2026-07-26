@@ -14,8 +14,8 @@ const userSchema = new Schema<IUser>({
     age: {
         type: Number,
         required: true,
-        min: [18,"Age must be at least 18"],
-        max: [60,"Age must be at most 60"]
+        min: [18, "Age must be at least 18"],
+        max: [60, "Age must be at most 60"]
     },
     email: {
         type: String,
@@ -34,7 +34,6 @@ const userSchema = new Schema<IUser>({
 }, {
     versionKey: false,
     timestamps: true
-}
-)
+})
 
 export const User = model("User", userSchema)

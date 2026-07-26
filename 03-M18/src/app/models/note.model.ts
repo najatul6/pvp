@@ -30,6 +30,8 @@ const noteSchema = new Schema<INote>({
             default: '#727272'
         }
     }
-}, { timestamps: true });
+}, { 
+    timestamps: true 
+});
 
 export const Note = model('Note', noteSchema);
