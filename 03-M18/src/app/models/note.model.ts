@@ -2,8 +2,15 @@ import { model, Schema } from "mongoose";
 import { INote } from "../interfaces/note.interface";
 
 const noteSchema = new Schema<INote>({
-    title: { type: String, required: true, trim: true },
-    content: { type: String, default: '' },
+    title: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    content: {
+        type: String,
+        default: ''
+    },
     category: {
         type: String,
         enum: ["Work", "Personal", "Ideas", "Others"],
@@ -14,8 +21,14 @@ const noteSchema = new Schema<INote>({
         default: false
     },
     tags: {
-        label: { type: String, required: true },
-        color: { type: String, default: '#727272' }
+        label: {
+            type: String,
+            required: true
+        },
+        color: {
+            type: String,
+            default: '#727272'
+        }
     }
 }, { timestamps: true });
 
