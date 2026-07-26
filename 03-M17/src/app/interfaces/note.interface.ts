@@ -3,5 +3,8 @@ export interface INote {
     content:string,
     category:"Work" | "Personal" | "Ideas" | "Others",
     pinned:boolean,
-    tags:string[]
+    tags:{
+        label:string,
+        color:string
+    }
 }
