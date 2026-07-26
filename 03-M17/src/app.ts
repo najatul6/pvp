@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from 'express'
-import { NoteRoute } from './app/controllers/note.controllers';
-import { UserRoute } from './app/controllers/user.controllers';
+import { NoteRoute } from './app/controllers/note.controller';
+import { UserRoute } from './app/controllers/user.controller';
 
 const app: Application = express();
 app.use(express.json());
