@@ -1,17 +1,27 @@
-import express,{ Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { User } from "../models/user.model";
+import z from "zod";
 
-export const UserRoute=express.Router()
+export const UserRoute = express.Router()
+
+const CreateUserZodSchema = z.object({
+  firstName: z.string(),
+  lastName: z.string(),
+  age: z.number(),
+  email: z.string(),
+  password: z.string().min(8).max(16),
+  role: z.string().optional()
+})
 
 // Create user Endpoint
-UserRoute.post("/create-user", async(req:Request, res:Response)=>{
-    const body=req.body;
-    const user=await User.create(body)
-    res.status(200).json({
-        success:true,
-        message:"User Create Successfully",
-        user
-    })
+UserRoute.post("/create-user", async (req: Request, res: Response) => {
+  const body = req.body;
+  const user = await User.create(body)
+  res.status(200).json({
+    success: true,
+    message: "User Create Successfully",
+    user
+  })
 })
 
 
