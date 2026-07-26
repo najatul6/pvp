@@ -15,13 +15,21 @@ const CreateUserZodSchema = z.object({
 
 // Create user Endpoint
 UserRoute.post("/create-user", async (req: Request, res: Response) => {
-  const body = req.body;
-  const user = await User.create(body)
-  res.status(200).json({
-    success: true,
-    message: "User Create Successfully",
-    user
-  })
+  try {
+    const body = await CreateUserZodSchema.parseAsync(req.body);
+    const user = await User.create(body)
+    res.status(200).json({
+      success: true,
+      message: "User Create Successfully",
+      user
+    })
+  } catch (error) {
+    res.status(400).json({
+      error: true,
+      message: error.message,
+      user
+    })
+  }
 })
 
 
