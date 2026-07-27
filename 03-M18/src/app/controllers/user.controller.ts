@@ -25,9 +25,9 @@ UserRoute.post("/create-user", async (req: Request, res: Response) => {
     })
   } catch (error) {
     res.status(400).json({
-      error: true,
-      message: error.message,
-      user
+      success: false,
+      message: error.message
+
     })
   }
 })
