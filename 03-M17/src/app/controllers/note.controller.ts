@@ -1,7 +1,7 @@
-import express,{ Request, Response } from "express";
+import express, { Request, Response } from "express";
 import { Note } from "../models/note.model";
 
-export const NoteRoute =express.Router()
+export const NoteRoute = express.Router()
 
 // Create Note Endpoint
 NoteRoute.post("/create-note", async (req: Request, res: Response) => {
