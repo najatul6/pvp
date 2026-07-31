@@ -1,5 +1,11 @@
-import {createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = { count: 0 }
 
 const counterSlice = createSlice({
-    name,initialState,reducer
+    name: "counter",
+    initialState,
+    reducers: {}
 })
+
+export default counterSlice.reducer;
