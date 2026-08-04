@@ -1,6 +1,5 @@
 import { decrement, increment } from "./redux/features/counter/counterSlice";
 import { useAppDispatch, useAppSelector } from "./redux/hook";
-import "./App.css";
 
 function App() {
   const dispatch = useAppDispatch();
