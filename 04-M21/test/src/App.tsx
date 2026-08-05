@@ -22,6 +22,7 @@ function App() {
           <Button
             onClick={() => handleIncrement(5)}
             variant="default"
+            className="cursor-pointer"
           >
             Increment By 5
           </Button>
@@ -29,6 +30,7 @@ function App() {
             <Button
               onClick={() => handleIncrement(1)}
               variant="default"
+              className="cursor-pointer"
             >
               Increment
             </Button>
@@ -36,6 +38,7 @@ function App() {
             <Button
               onClick={() => handleDecrement(1)}
               variant="destructive"
+              className="cursor-pointer"
             >
               Decrement
             </Button>
@@ -43,6 +46,7 @@ function App() {
           <Button
             onClick={() => handleDecrement(5)}
             variant="destructive"
+            className="cursor-pointer"
           >
             Decrement By 5
           </Button>
