@@ -6,11 +6,11 @@ function App() {
   const dispatch = useAppDispatch();
   const { count } = useAppSelector((state) => state.counter);
 
-  const handleIncrement = (amount:number) => {
+  const handleIncrement = (amount: number) => {
     dispatch(increment(amount));
   };
 
-  const handleDecrement = (amount:number) => {
+  const handleDecrement = (amount: number) => {
     dispatch(decrement(amount));
   };
 
